@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks.Dataflow;
 
-namespace FileProcessor
+namespace FileProcessor.Queues.Generic
 {
 
 

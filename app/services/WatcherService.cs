@@ -10,10 +10,12 @@ namespace FileProcessor.Services
     {
 
         private static ILogger _logger;
+        private static ITasksService _taskService;
 
-        public WatcherService(ILoggerFactory loggerFactory)
+        public WatcherService(ILoggerFactory loggerFactory, ITasksService taskService)
         {
             _logger = loggerFactory.CreateLogger<WatcherService>();
+            _taskService = taskService;
         }
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -40,25 +42,24 @@ namespace FileProcessor.Services
                 watcher.Changed += OnChanged;
                 watcher.Created += OnChanged;
                 watcher.Deleted += OnChanged;
-                watcher.Renamed += OnRenamed;
 
                 // Begin watching.
                 watcher.EnableRaisingEvents = true;
 
                 // Wait for the user to quit the program.
-                Console.WriteLine("Press 'q' to quit the sample.");
+                _taskService.processTasks();
+                _logger.LogInformation("Press 'q' to quit the sample.");
                 while (Console.Read() != 'q') ;
 
             }
         }
 
         // Define the event handlers.
-        private static void OnChanged(object source, FileSystemEventArgs e) =>
-            // Specify what is done when a file is changed, created, or deleted.
-            Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
+        private static void OnChanged(object source, FileSystemEventArgs e)
+        {
 
-        private static void OnRenamed(object source, RenamedEventArgs e) =>
-            // Specify what is done when a file is renamed.
-            Console.WriteLine($"File: {e.OldFullPath} renamed to {e.FullPath}");
+            _logger.LogInformation($"Enqueue {e.FullPath}");
+            _taskService.Enqueue(e.FullPath);
+        }
     }
 }

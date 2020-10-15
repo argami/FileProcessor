@@ -33,8 +33,8 @@ namespace FileProcessor
         private static void RegisterServices()
         {
             var services = new ServiceCollection()
-            .AddLogging()
-            // .AddSingleton<ICustomer, Customer>()
+            .AddLogging(builder => builder.AddConsole())
+            .AddSingleton<ITasksService, TasksService>()
             .AddSingleton<WatcherService>();
             _serviceProvider = services.BuildServiceProvider(true);
         }
