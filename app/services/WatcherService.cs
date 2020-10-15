@@ -4,16 +4,16 @@ using System.Security.Permissions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 
-namespace FileProcessor
+namespace FileProcessor.Services
 {
-    public class Watcher
+    public class WatcherService
     {
 
         private static ILogger _logger;
 
-        public Watcher(ILoggerFactory loggerFactory)
+        public WatcherService(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<Watcher>();
+            _logger = loggerFactory.CreateLogger<WatcherService>();
         }
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -37,7 +37,10 @@ namespace FileProcessor
                 watcher.Filter = filter;
 
                 // Add event handlers.
+                watcher.Changed += OnChanged;
                 watcher.Created += OnChanged;
+                watcher.Deleted += OnChanged;
+                watcher.Renamed += OnRenamed;
 
                 // Begin watching.
                 watcher.EnableRaisingEvents = true;
@@ -45,14 +48,17 @@ namespace FileProcessor
                 // Wait for the user to quit the program.
                 Console.WriteLine("Press 'q' to quit the sample.");
                 while (Console.Read() != 'q') ;
+
             }
         }
 
         // Define the event handlers.
-        private static void OnChanged(object source, FileSystemEventArgs e)
-        {
+        private static void OnChanged(object source, FileSystemEventArgs e) =>
             // Specify what is done when a file is changed, created, or deleted.
             Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
-        }
+
+        private static void OnRenamed(object source, RenamedEventArgs e) =>
+            // Specify what is done when a file is renamed.
+            Console.WriteLine($"File: {e.OldFullPath} renamed to {e.FullPath}");
     }
 }
