@@ -1,9 +1,9 @@
 using System;
 using FileProcessor.Entities;
-using Microsoft.VisualBasic.FileIO;
 using System.IO;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using FileProcessor.Formatters;
 
 namespace FileProcessor.Tasks
 {
@@ -48,7 +48,18 @@ namespace FileProcessor.Tasks
                     logger.LogError($"Error Processing {line}: Exception: {e.Message}");
                 }
             }
+
+            var exporter = new ExcelFormatExporter();
+            foreach (var result in results)
+            {
+                var headers = fileSchema.GetHeadersByKey(result.Key);
+
+                exporter.Export(Path.Join(directoryTo, $"Results_{result.Key}"), result.Value, headers.ToArray());
+            }
+
+
         }
+
 
 
     }

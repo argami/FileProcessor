@@ -16,6 +16,11 @@ namespace FileProcessor.Entities
 
         public int[] GetFieldSizesDisposition() => Fields.ConvertAll<int>(field => field.Length).ToArray();
 
+        public List<string> Headers()
+        {
+            return Fields.ConvertAll<string>(field => field.Name);
+        }
+
         public int LineWidth()
         {
             int result = 0;

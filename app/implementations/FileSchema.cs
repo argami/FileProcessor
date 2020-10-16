@@ -31,6 +31,17 @@ namespace FileProcessor.Entities
             return null;
         }
 
+        public List<string> GetHeadersByKey(string key)
+        {
+
+            var record = RetrieveRecordByKey(key);
+            if (record != null)
+            {
+                return record.Headers();
+            }
+            return new List<string>();
+        }
+
         public string GetKey(string line)
         {
             return line.Substring(KeyPos - 1, Size);
