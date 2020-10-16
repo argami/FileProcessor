@@ -3,7 +3,7 @@ using FileProcessor.Entities;
 using System.IO;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-using FileProcessor.Formatters;
+using FileProcessor.Exporters;
 
 namespace FileProcessor.Tasks
 {
