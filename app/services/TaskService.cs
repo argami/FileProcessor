@@ -11,14 +11,17 @@ namespace FileProcessor.Services
         private ILogger _logger;
         private AsyncQueue<string> _queue;
         private FileSchema _fileSchema;
+        private IAppSettings _config;
 
-        public TasksService(ILoggerFactory loggerFactory, FileSchema fileSchema)
+        public TasksService(ILoggerFactory loggerFactory, FileSchema fileSchema, IAppSettings config)
         {
             _logger = loggerFactory.CreateLogger<TasksService>();
 
             _queue = new AsyncQueue<string>();
 
             _fileSchema = fileSchema;
+
+            _config = config;
         }
 
         public void Enqueue(string task)
@@ -33,7 +36,7 @@ namespace FileProcessor.Services
             await foreach (string task in _queue)
             {
                 _logger.LogInformation($"processingTask: {task}");
-                ProcessFileTask.Execute(task, _fileSchema, _logger);
+                ProcessFileTask.Execute(task, _fileSchema, _logger, _config);
             }
 
         }

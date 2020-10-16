@@ -36,11 +36,8 @@ namespace FileProcessor.Services
 
                 // Only watch text files.
                 watcher.Filter = filter;
-
                 // Add event handlers.
-                watcher.Changed += OnChanged;
                 watcher.Created += OnChanged;
-                watcher.Deleted += OnChanged;
 
                 // Begin watching.
                 watcher.EnableRaisingEvents = true;

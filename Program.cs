@@ -13,7 +13,7 @@ namespace FileProcessor
     class Program
     {
         private static IServiceProvider _serviceProvider;
-        private static AppSettings _config;
+        private static IAppSettings _config;
         private static ILogger _logger;
 
         private static FileSchema _fileSchema;
@@ -82,9 +82,9 @@ namespace FileProcessor
             var services = new ServiceCollection()
                                     .AddLogging(builder => builder.AddConsole())
                                     .AddSingleton<ITasksService, TasksService>()
+                                    .AddSingleton(_config)
                                     .AddSingleton<WatcherService>()
-                                    .AddSingleton(_fileSchema)
-                                    .AddSingleton(_config);
+                                    .AddSingleton(_fileSchema);
             _serviceProvider = services.BuildServiceProvider(true);
 
             _logger = _serviceProvider.GetService<ILoggerFactory>().CreateLogger<Program>();

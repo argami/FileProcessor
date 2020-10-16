@@ -2,7 +2,7 @@ using System;
 
 namespace FileProcessor
 {
-    public class AppSettings
+    public class AppSettings : IAppSettings
     {
         public string ProcessedFilesDir { get; set; }
 

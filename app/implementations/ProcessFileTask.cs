@@ -9,17 +9,27 @@ namespace FileProcessor.Tasks
 {
     public class ProcessFileTask
     {
-        public static void Execute(string fileToProcess, FileSchema fileSchema, ILogger logger)
+        public static void Execute(string fileToProcess, FileSchema fileSchema, ILogger logger, IAppSettings config)
         {
-            (new ProcessFileTask()).execute(fileToProcess, fileSchema, logger);
+            (new ProcessFileTask()).execute(fileToProcess, fileSchema, logger, config);
         }
 
-        public void execute(string fileToProcess, FileSchema fileSchema, ILogger logger)
+        public void execute(string fileToProcess, FileSchema fileSchema, ILogger logger, IAppSettings config)
         {
-            Console.WriteLine($"REACHED {fileToProcess} {fileSchema.Records.Count}");
+            if (!File.Exists(fileToProcess))
+            {
+                logger.LogError($"Error Processing file: {fileToProcess} Not Found");
+            }
+
+            var directoryTo = Path.Join(config.OutputDir, DateTime.Now.ToString("yyyyMMddHHmmss"));
+
+            Directory.CreateDirectory(directoryTo);
+
+            var moveTo = Path.Join(directoryTo, Path.GetFileName(fileToProcess));
+            File.Move(fileToProcess, moveTo);
 
             Dictionary<string, List<string[]>> results = new Dictionary<string, List<string[]>>();
-            foreach (string line in File.ReadLines(fileToProcess))
+            foreach (string line in File.ReadLines(moveTo))
             {
                 try
                 {
