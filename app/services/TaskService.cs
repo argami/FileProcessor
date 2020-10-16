@@ -33,7 +33,7 @@ namespace FileProcessor.Services
             await foreach (string task in _queue)
             {
                 _logger.LogInformation($"processingTask: {task}");
-                new ProcessFileTask(task, _fileSchema);
+                ProcessFileTask.Execute(task, _fileSchema, _logger);
             }
 
         }

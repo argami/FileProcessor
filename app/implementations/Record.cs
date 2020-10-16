@@ -14,10 +14,38 @@ namespace FileProcessor.Entities
 
         public List<Field> Fields;
 
-        private Array LoadSchemas()
+        public int[] GetFieldSizesDisposition() => Fields.ConvertAll<int>(field => field.Length).ToArray();
+
+        public int LineWidth()
         {
-            return Fields.ConvertAll<int>(field => field.Length).ToArray();
+            int result = 0;
+            foreach (var field in Fields)
+            {
+                result += field.Length;
+            }
+            return result;
+        }
+
+        public string[] Parse(string line)
+        {
+            // validate that the line has the same amount of 
+            // chars than the expected fields
+            line = line.PadRight(LineWidth());
+
+            List<string> result = new List<string>();
+
+            foreach (var field in Fields)
+            {
+                result.Add(line.Substring(0, field.Length));
+                line = line.Remove(0, field.Length);
+            }
+
+            return result.ToArray();
+        }
+
+        public bool IsKey(string key)
+        {
+            return key.Equals(KeyValue);
         }
     }
-
 }
