@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FileProcessor.Formatters
+namespace FileProcessor.Exporters
 {
     public interface IFormatExporter
     {
