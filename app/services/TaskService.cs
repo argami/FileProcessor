@@ -35,8 +35,17 @@ namespace FileProcessor.Services
         {
             await foreach (string task in _queue)
             {
-                _logger.LogInformation($"processingTask: {task}");
-                ProcessFileTask.Execute(task, _fileSchema, _logger, _config);
+                try
+                {
+                    _logger.LogInformation($"processingTask: {task}");
+                    ProcessFileTask.Execute(task, _fileSchema, _logger, _config);
+                    _logger.LogInformation($"Finish processingTask: {task}");
+                }
+                catch (System.Exception e)
+                {
+                    _logger.LogError($"Error Processing File: {task} Exception: {e.Message}");
+                    throw;
+                }
             }
 
         }

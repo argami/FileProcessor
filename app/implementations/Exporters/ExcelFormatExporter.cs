@@ -10,7 +10,10 @@ namespace FileProcessor.Exporters
             var wb = new XLWorkbook();
             var ws = wb.Worksheets.Add("Collections");
 
-            ws.Cell(1, 1).Value = headers;
+            for (int i = 1; i < headers.Length; i++)
+            {
+                ws.Cell(1, i).Value = headers[i - 1];
+            }
             ws.Cell(2, 1).Value = body;
 
             wb.SaveAs($"{fileName}.xlsx");
