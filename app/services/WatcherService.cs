@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Security.Permissions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 
 namespace FileProcessor.Services
 {
@@ -46,8 +45,10 @@ namespace FileProcessor.Services
                 // Begin watching.
                 watcher.EnableRaisingEvents = true;
 
-                // Wait for the user to quit the program.
+                // process the tasks.
                 _taskService.processTasks();
+
+                // Wait for the user to quit the program.
                 _logger.LogInformation("Press 'q' to quit the sample.");
                 while (Console.Read() != 'q') ;
 

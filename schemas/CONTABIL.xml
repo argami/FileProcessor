@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<FileSchema KeyPos="15" Size="1" Filter="*.dat">
+    <Records>
+        <Record KeyValue="0" Description="Alta de Apuntes sin IVA">
+            <Fields>
+                <Field Length="1" Name="Tipo de Formato"/>
+                <Field Length="5" Name="Código de empresa"/>
+                <Field Length="8" Name="Fecha del apunte"/>
+                <Field Length="1" Name="Tipo de Registro"/>
+                <Field Length="12" Name="Cuenta"/>
+                <Field Length="30" Name="Descripción de lacuenta"/>
+                <Field Length="1" Name="Tipo de importe (D/H)"/>
+                <Field Length="10" Name="Referencia del documento"/>
+                <Field Length="1" Name="Línea de apunte(I, M, U)"/>
+                <Field Length="30" Name="Descripción del apunte"/>
+                <Field Length="14" Name="Importe"/>
+                <Field Length="137" Name="Reserva"/>
+                <Field Length="1" Name="Indicador de Asiento de nómina"/>
+                <Field Length="1" Name="Tiene Registro Analítico"/>
+                <Field Length="256" Name="Reserva"/>
+                <Field Length="1" Name="Moneda enlace"/>
+                <Field Length="1" Name="Indicador de generado (N)"/>
+                <Field Length="2" Name="Retorno de carro"/>
+            </Fields>
+        </Record>
+        <Record KeyValue="1" Description="Alta Cabecera de apuntes con IVA">
+            <Fields>
+                <Field Length="1" Name="Tipo de Formato"/>
+                <Field Length="5" Name="Código de empresa"/>
+                <Field Length="8" Name="Fecha del apunte"/>
+                <Field Length="1" Name="Tipo de Registro"/>
+                <Field Length="12" Name="Cuenta"/>
+                <Field Length="30" Name="Descripción de la cuenta"/>
+                <Field Length="1" Name="Tipo de factura"/>
+                <Field Length="10" Name="Número de factura o documento"/>
+                <Field Length="1" Name="Línea de apunte (I)"/>
+                <Field Length="30" Name="Descripción del apunte"/>
+                <Field Length="14" Name="Importe"/>
+                <Field Length="62" Name="Reserva"/>
+                <Field Length="14" Name="NIF cliente o proveedor"/>
+                <Field Length="40" Name="Nombre cliente proveedor"/>
+                <Field Length="5" Name="Código postal"/>
+                <Field Length="2" Name="Reserva."/>
+                <Field Length="8" Name="Fecha de operación"/>
+                <Field Length="8" Name="Fecha de factura"/>
+                <Field Length="60" Name="Número factura ampliado para el SII"/>
+                <Field Length="196" Name="Reserva"/>
+                <Field Length="1" Name="Moneda enlace"/>
+                <Field Length="1" Name="Indicador de generado (N)"/>
+                <Field Length="2" Name="Retorno de carro"/>
+            </Fields>
+        </Record>
+        <Record KeyValue="9" Description="Detalle de apuntes con IVA">
+            <Fields>
+                <Field Length="1" Name="Tipo de Formato"/>
+                <Field Length="5" Name="Código de empresa"/>
+                <Field Length="8" Name="Fecha del apunte"/>
+                <Field Length="1" Name="Tipo de Registro"/>
+                <Field Length="12" Name="Cuenta"/>
+                <Field Length="30" Name="Descripción de la cuenta"/>
+                <Field Length="1" Name="Tipo de importe (C o A)"/>
+                <Field Length="10" Name="Número de factura o documento"/>
+                <Field Length="1" Name="Línea de apunte (I)"/>
+                <Field Length="30" Name="Descripción del apunte"/>
+                <Field Length="2" Name="Subtipo de factura (01 a 07)"/>
+                <Field Length="14" Name="Base imponible"/>
+                <Field Length="5" Name="Porcentaje de IVA"/>
+                <Field Length="14" Name="Cuota de IVA"/>
+                <Field Length="5" Name="Porcentaje de Recargo"/>
+                <Field Length="14" Name="Cuota de Recargo"/>
+                <Field Length="5" Name="Porcentaje de Retención"/>
+                <Field Length="14" Name="Cuota de Retención"/>
+                <Field Length="1" Name="Operación sujeta a IVA"/>
+                <Field Length="1" Name="Marca afecta 415"/>
+                <Field Length="1" Name="Marca factura en criterio de caja"/>
+                <Field Length="14" Name="Reserva"/>
+                <Field Length="12" Name="Cuenta de IVA Soportado"/>
+                <Field Length="12" Name="Cuenta de recargo Soportado"/>
+                <Field Length="12" Name="Cuenta de retención"/>
+                <Field Length="12" Name="Cuenta de IVA 2 Repercutido"/>        
+                <Field Length="12" Name="Cuenta de recargo 2 Repercutido"/>
+                <Field Length="1" Name="Tiene Registro Analítico"/>
+                <Field Length="256" Name="Reserva"/>
+                <Field Length="1" Name="Moneda enlace"/>
+                <Field Length="1" Name="Indicador de generado (N)"/>
+                <Field Length="2" Name="Retorno de carro"/>
+            </Fields>
+        </Record>
+        <Record KeyValue="C" Description="Alta y modificación de cuentas y/o clientes o proveedores">
+            <Fields>
+            <Field Length="1" Name="Tipo de Formato"/>
+            <Field Length="5" Name="Código de empresa"/>
+            <Field Length="8" Name="Fecha del apunte"/>
+            <Field Length="1" Name="Tipo de Registro"/>
+            <Field Length="12" Name="Cuenta"/>
+            <Field Length="30" Name="Descripción de la cuenta"/>
+            <Field Length="1" Name="Actualizar Saldo Inicial"/>
+            <Field Length="14" Name="Saldo Inicial"/>
+            <Field Length="1" Name="Ampliación"/>
+            <Field Length="4" Name="Reserva"/>
+            <Field Length="14" Name="NIF"/>
+            <Field Length="2" Name="Siglas Vía Publica"/>
+            <Field Length="30" Name="Vía Publica"/>
+            <Field Length="5" Name="Numero"/>
+            <Field Length="2" Name="Escalera"/>
+            <Field Length="2" Name="Piso"/>
+            <Field Length="2" Name="Puerta"/>
+            <Field Length="20" Name="Municipio"/>
+            <Field Length="5" Name="Código Postal"/>
+            <Field Length="15" Name="Provincia"/>
+            <Field Length="3" Name="País"/>
+            <Field Length="12" Name="Teléfono"/>
+            <Field Length="4" Name="Extensión"/>
+            <Field Length="12" Name="Fax"/>
+            <Field Length="30" Name="@e-mail"/>
+            <Field Length="2" Name="Reservado"/>
+            <Field Length="1" Name="Criterio de caja"/>
+            <Field Length="2" Name="Reservado"/>
+            <Field Length="12" Name="Cuenta contrapartida"/>
+            <Field Length="2" Name="Código de país"/>
+            <Field Length="254" Name="Reserva"/>
+            <Field Length="1" Name="Moneda enlace"/>
+            <Field Length="1" Name="Indicador de generado (N)"/>
+            <Field Length="2" Name="Retorno de carro"/>
+            </Fields>
+        </Record>
+    </Records>
+</FileSchema>
