@@ -68,7 +68,7 @@ namespace FileProcessor
             RegisterServices();
 
             IServiceScope scope = _serviceProvider.CreateScope();
-            scope.ServiceProvider.GetRequiredService<WatcherService>().Run(args[0], "*.dat");
+            scope.ServiceProvider.GetRequiredService<WatcherService>().Run(_config.WatchDir, _fileSchema.Filter);
 
             DisposeServices();
         }
